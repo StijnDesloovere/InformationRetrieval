@@ -30,8 +30,6 @@ def create_positional_index():
     return positional_index
 
 
-index = create_positional_index()
-print(len(index['software'][14]))
 
 
 
