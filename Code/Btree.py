@@ -149,12 +149,13 @@ class BTree(object):
 
 
 def create_btree(dictionary):
-    Tree = BTree(2)
+
+    tree_index = BTree(2)
 
     for term in dictionary:
-        Tree.insert((term, dictionary[term]))
+        tree_index.insert((term, dictionary[term]))
 
-    return Tree
+    return tree_index
 
 
 index = create_positional_index()
