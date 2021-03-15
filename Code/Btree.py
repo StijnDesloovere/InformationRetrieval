@@ -198,28 +198,21 @@ def create_btree(dictionary):
 
 
 # Example range(m,n)
-Test_tree = BTree(2)
-Test_tree.insert(("apple", 1))
-Test_tree.insert(("banana", 2))
-Test_tree.insert(("kiwi", 3))
-Test_tree.insert(("melon", 4))
-Test_tree.insert(("mandarin", 5))
-Test_tree.insert(("mammee", 6))
-Test_tree.insert(("mamoncillo", 7))
-Test_tree.insert(("nectarine", 8))
-Test_tree.insert(("neem", 9))
-Test_tree.insert(("nere", 10))
-Test_tree.insert(("cherry", 11))
-Test_tree.insert(("grape", 12))
-Test_tree.insert(("lemon", 13))
-# Test_tree.print_order()
+# Test_tree = BTree(2)
+# Test_tree.insert(("apple", 1))
+# Test_tree.insert(("banana", 2))
+# Test_tree.insert(("kiwi", 3))
+# Test_tree.insert(("melon", 4))
+# Test_tree.insert(("mandarin", 5))
+# Test_tree.insert(("mammee", 6))
+# Test_tree.insert(("mamoncillo", 7))
+# Test_tree.insert(("nectarine", 8))
+# Test_tree.insert(("neem", 9))
+# Test_tree.insert(("nere", 10))
+# Test_tree.insert(("cherry", 11))
+# Test_tree.insert(("grape", 12))
+# Test_tree.insert(("lemon", 13))
 
-# print(Test_tree.range("a", "z", [], []))
-
-index = create_positional_index()
-Tree = create_btree(index)
-print(Tree.range("man", "max", [], []))
-Tree.print_order()
 
 
 
