@@ -30,6 +30,8 @@ def create_positional_index():
     return positional_index
 
 
-
+def reverse_index_keys(index):
+    reversed_index = dict(map(lambda kv: (kv[0][::-1], kv[1]), index.items()))
+    return reversed_index
 
 
