@@ -133,19 +133,58 @@ class BTree(object):
     def print_order(self):
         """Print an level-order representation."""
         this_level = [self.root]
+        level = 0
         while this_level:
             next_level = []
             output = ""
             for node in this_level:
                 if node.children:
                     next_level.extend(node.children)
-                output += str(node.keys) + " "
+                keys = list(map(lambda x: x[0], node.keys))
+                output += str(keys) + " "
+            print("level " + str(level))
             print(output)
+            level = level + 1
             this_level = next_level
 
     """
     Range function: Own method created to find all values in a certain range 
     """
+    def range(self, min_term, max_term, path, result, node=None, return_index=False):
+        if node is None:
+            node = self.root
+        key_terms = list(map(lambda x: x[0], node.keys))
+        if node.leaf:
+            for key in key_terms:
+                if min_term <= key < max_term:
+                    result.append(key)
+
+            if not path:
+                return result
+            else:
+                previous = path.pop(-1)
+                previous_node = previous[0]
+                previous_index = previous[1]
+                return self.range(min_term, max_term, path, result, previous_node, previous_index)
+
+        # Go down in the tree
+        elif return_index is False:
+            i = 0
+            while i < node.size and min_term > key_terms[i]:
+                i += 1
+            # Add path to nodes that have potential to have predecessors which fall in range
+            if i != node.size and key_terms[i] < max_term:
+                path.append((node, i))
+            return self.range(min_term, max_term, path, result, node.children[i])
+        # Go down in the tree after climbing back a node
+        else:
+            # Add term to result if it falls within the range
+            result.append(key_terms[return_index])
+            i = return_index + 1
+            # Add path to nodes that have potential to have predecessors which fall in range
+            if i != node.size and key_terms[i] < max_term:
+                path.append((node, i))
+            return self.range(min_term, max_term, path, result, node.children[i])
 
 
 def create_btree(dictionary):
@@ -158,8 +197,39 @@ def create_btree(dictionary):
     return tree_index
 
 
+# Example range(m,n)
+Test_tree = BTree(2)
+Test_tree.insert(("apple", 1))
+Test_tree.insert(("banana", 2))
+Test_tree.insert(("kiwi", 3))
+Test_tree.insert(("melon", 4))
+Test_tree.insert(("mandarin", 5))
+Test_tree.insert(("mammee", 6))
+Test_tree.insert(("mamoncillo", 7))
+Test_tree.insert(("nectarine", 8))
+Test_tree.insert(("neem", 9))
+Test_tree.insert(("nere", 10))
+Test_tree.insert(("cherry", 11))
+Test_tree.insert(("grape", 12))
+Test_tree.insert(("lemon", 13))
+Test_tree.insert(("a", 14))
+Test_tree.insert(("b", 15))
+Test_tree.insert(("c", 16))
+Test_tree.insert(("d", 17))
+Test_tree.insert(("e", 18))
+Test_tree.insert(("f", 19))
+Test_tree.insert(("g", 20))
+Test_tree.insert(("h", 21))
+Test_tree.insert(("i", 22))
+# Test_tree.print_order()
+
+# print(Test_tree.range("a", "z", [], []))
+
 index = create_positional_index()
 Tree = create_btree(index)
-print(Tree.search("information"))
+print(Tree.range("man", "max", [], []))
 Tree.print_order()
+
+
+
 
