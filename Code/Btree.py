@@ -155,9 +155,9 @@ class BTree(object):
             node = self.root
         key_terms = list(map(lambda x: x[0], node.keys))
         if node.leaf:
-            for key in key_terms:
+            for idx, key in enumerate(key_terms):
                 if min_term <= key < max_term:
-                    result.append(key)
+                    result[key] = node.keys[idx][1]
 
             if not path:
                 return result
@@ -179,7 +179,7 @@ class BTree(object):
         # Go down in the tree after climbing back a node
         else:
             # Add term to result if it falls within the range
-            result.append(key_terms[return_index])
+            result[node.keys[return_index][0]] = node.keys[return_index][1]
             i = return_index + 1
             # Add path to nodes that have potential to have predecessors which fall in range
             if i != node.size and key_terms[i] < max_term:
