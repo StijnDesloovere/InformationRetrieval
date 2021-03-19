@@ -13,7 +13,9 @@ def create_positional_index():
         for line in file:
             for word in line.split():
                 # Remove special characters in sentences
-                word = word.replace(',', '').replace('.', '').replace('"', '').lower()
+                word = word.replace(',', '').replace('.', '').replace('"', '').replace("'s", '')\
+                    .replace('?', '').replace('(', '').replace(')', '')\
+                    .lower()
                 # Add a new word to the positional index
                 if word not in positional_index:
                     positional_index[word] = {}
