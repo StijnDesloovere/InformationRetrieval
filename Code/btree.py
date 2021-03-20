@@ -150,7 +150,7 @@ class BTree(object):
     """
     Range function: Own method created to find all values in a certain range 
     """
-    def range(self, min_term, max_term, path, result, node=None, return_index=False):
+    def range(self, min_term, max_term, path=[], result={}, node=None, return_index=False):
         if node is None:
             node = self.root
         key_terms = list(map(lambda x: x[0], node.keys))
@@ -212,7 +212,6 @@ def create_btree(dictionary):
 # Test_tree.insert(("cherry", 11))
 # Test_tree.insert(("grape", 12))
 # Test_tree.insert(("lemon", 13))
-
 
 
 

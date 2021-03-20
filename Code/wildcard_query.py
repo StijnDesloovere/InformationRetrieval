@@ -1,4 +1,4 @@
-from Code.Btree import BTree, create_btree
+from Code.btree import BTree, create_btree
 from Code.positional_index import create_positional_index, reverse_index_keys
 import re
 
@@ -86,3 +86,4 @@ def wildcard_query(query, index, btree, reversed_btree):
 # btree = create_btree(index)
 # reversed_btree = create_btree(reversed_index)
 # print(wildcard_query("*co*mpu*er", index, btree, reversed_btree))
+
