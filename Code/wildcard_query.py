@@ -85,5 +85,5 @@ def wildcard_query(query, index, btree, reversed_btree):
 # reversed_index = reverse_index_keys(index)
 # btree = create_btree(index)
 # reversed_btree = create_btree(reversed_index)
-# print(wildcard_query("*co*mpu*er", index, btree, reversed_btree))
+# print(wildcard_query("*c*mp*er", index, btree, reversed_btree))
 
