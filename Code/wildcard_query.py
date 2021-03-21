@@ -8,7 +8,7 @@ def wildcard_query(query, index, btree, reversed_btree):
     start_length = None
     end_length = None
     between = []
-    intermediate_result = {}
+    intermediate_result = None
     result = {}
 
     # Split query in strings divided by the wildcard
@@ -56,7 +56,7 @@ def wildcard_query(query, index, btree, reversed_btree):
             intermediate_result = btree.range(char, first_part + next_last_letter, [], {})
 
     # Handle the case where the query starts and ends in a wildcard
-    if not intermediate_result:
+    if intermediate_result is None:
         intermediate_result = index
 
     # Check if the given character strings occur in the correct order
