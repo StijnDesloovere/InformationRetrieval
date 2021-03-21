@@ -6,6 +6,10 @@ def create_positional_index():
     positional_index = {}
     document = 1
 
+    # Load the stop word list into memory
+    with open('../Stopword-List.txt') as file:
+        stopwords = list(word.rstrip() for word in file)
+
     for filename in os.listdir('../Documents'):
         file = open('../Documents/' + filename, "r")
         position = 0
@@ -16,6 +20,10 @@ def create_positional_index():
                 word = word.replace(',', '').replace('.', '').replace('"', '').replace("'s", '')\
                     .replace('?', '').replace('(', '').replace(')', '')\
                     .lower()
+                # Filter out stop words
+                if word in stopwords:
+                    position += 1
+                    continue
                 # Add a new word to the positional index
                 if word not in positional_index:
                     positional_index[word] = {}
