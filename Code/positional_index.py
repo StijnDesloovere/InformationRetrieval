@@ -1,4 +1,3 @@
-
 import os
 
 
@@ -7,14 +6,16 @@ def create_positional_index():
     positional_index = {}
     document = 1
 
-    for filename in os.listdir('./Documents'):
-        file = open('./Documents/' + filename, "r")
+    for filename in os.listdir('../Documents'):
+        file = open('../Documents/' + filename, "r")
         position = 0
 
         for line in file:
             for word in line.split():
                 # Remove special characters in sentences
-                word = word.replace(',', '').replace('.', '').replace('"', '').lower()
+                word = word.replace(',', '').replace('.', '').replace('"', '').replace("'s", '')\
+                    .replace('?', '').replace('(', '').replace(')', '')\
+                    .lower()
                 # Add a new word to the positional index
                 if word not in positional_index:
                     positional_index[word] = {}
@@ -27,8 +28,9 @@ def create_positional_index():
                 position += 1
 
         document += 1
-    # print(positional_index)
+
     return positional_index
+
 
 def reverse_index_keys(index):
     reversed_index = dict(map(lambda kv: (kv[0][::-1], kv[1]), index.items()))

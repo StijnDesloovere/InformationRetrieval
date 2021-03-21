@@ -81,9 +81,9 @@ def wildcard_query(query, index, btree, reversed_btree):
 
 
 # Example: find computer and supercomputer
-# index = create_positional_index()
-# reversed_index = reverse_index_keys(index)
-# btree = create_btree(index)
-# reversed_btree = create_btree(reversed_index)
-# print(wildcard_query("*c*mp*er", index, btree, reversed_btree))
+index = create_positional_index()
+reversed_index = reverse_index_keys(index)
+btree = create_btree(index)
+reversed_btree = create_btree(reversed_index)
+print(wildcard_query("*c*mp*er", index, btree, reversed_btree))
 
