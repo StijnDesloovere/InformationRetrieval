@@ -77,7 +77,6 @@ def prox_intersection(p1,p2):
 #==============================================================================
 # Handling Normal Query
 #==============================================================================
-@trace
 def query_handler(query,inverted_index):
     query = query.split(" ")
     term = query[0]
