@@ -1,5 +1,5 @@
 # 2.a: Implement full boolean querying supporting AND, OR and NOT.
-
+# from cyberbrain import trace
 from Code.positional_index import create_positional_index, reverse_index_keys
 
 p_index = create_positional_index()
@@ -10,8 +10,12 @@ r_index = reverse_index_keys(p_index)
 #==============================================================================
 # Getting positional postinglist of terms
 #==============================================================================
+
 def get_pos_posting_list(word) :
-    return p_index[word]
+    if word in p_index:
+        return p_index[word]
+    else:
+        return []
 
 def docID(word):
     posting_list = get_pos_posting_list(word)
@@ -73,7 +77,7 @@ def prox_intersection(p1,p2):
 #==============================================================================
 # Handling Normal Query
 #==============================================================================
-
+@trace
 def query_handler(query,inverted_index):
     query = query.split(" ")
     term = query[0]
@@ -110,5 +114,7 @@ def query_handler(query,inverted_index):
 get_pos_posting_list("market")
 get_pos_posting_list("today")
 get_pos_posting_list("tomorrow")
-query = "market OR tomorrow NOT today"
+query1 = "market OR today"
+query = "market OR today AND dafasfsd"
 query_handler(query,p_index)
+query_handler(query1,p_index)
