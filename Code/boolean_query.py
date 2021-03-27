@@ -56,28 +56,9 @@ def neg(p1,p2):
         return []
 
 #==============================================================================
-# Proximity intersection of postings lists
-#==============================================================================
-def prox_intersection(p1,p2):
-    ans = []
-    if p1 is not None and p2 is not None:                                                                  
-        len1 = len(p1)
-        len2 = len(p2)
-        i = j = 0 
-        while i != len1 and j != len2:
-            if docID(p1[i]) == docID(p2[j]):
-                        l = []
-                        pp1 = get_position(p1[i])
-                        pp2 = get_position(p2[j])                                           
-    
-                        plen1 = len(pp1)
-                        plen2 = len(pp2)
-                        ii = jj = 0 
-
-#==============================================================================
 # Handling Normal Query
 #==============================================================================
-def query_handler(query,inverted_index):
+def query_handler(query):
     query = query.split(" ")
     term = query[0]
     posting = get_pos_posting_list(term)
@@ -115,5 +96,5 @@ get_pos_posting_list("today")
 get_pos_posting_list("tomorrow")
 query1 = "market OR today"
 query = "market OR today AND dafasfsd"
-query_handler(query,p_index)
-query_handler(query1,p_index)
+query_handler(query)
+query_handler(query1)
