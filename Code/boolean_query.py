@@ -1,6 +1,7 @@
 # 2.a: Implement full boolean querying supporting AND, OR and NOT.
 # from cyberbrain import trace
 from Code.positional_index import create_positional_index, reverse_index_keys
+from Code.Normalization import *
 
 p_index = create_positional_index()
 r_index = reverse_index_keys(p_index)
@@ -12,17 +13,20 @@ r_index = reverse_index_keys(p_index)
 #==============================================================================
 
 def get_pos_posting_list(word) :
+    wd = soundex(word)
     if word in p_index:
         return p_index[word]
     else:
         return []
 
 def docID(word):
+    wd = soundex(word)
     posting_list = get_pos_posting_list(word)
     docid = posting_list.keys()
     return docid
 
 def get_position(word,docid):
+    wd = soundex(word)
     return p_index[word][docid]
 
 #==============================================================================
