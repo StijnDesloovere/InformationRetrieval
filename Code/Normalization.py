@@ -5,6 +5,8 @@ from Code.positional_index import create_positional_index, reverse_index_keys
 from Code.boolean_query import *
 import time
 from timeit import Timer
+import numpy as np
+import matplotlib.pyplot as plt
 
 #==============================================================================
 # Soundex normalization
@@ -173,7 +175,7 @@ def calculate_normal_time(queryList):
     for query in queryList:
         part_time = Timer("query_handler(query)","from __main__ import query_handler,query")
         execute_time.append(part_time.timeit(number=10000))
-    print(execute_time)
+    # print(execute_time)
     return execute_time
 
 def calculate_sdx_time(queryList):
@@ -181,17 +183,46 @@ def calculate_sdx_time(queryList):
     for query in queryList:
         part_time = Timer("soundex_query_handler(query)","from __main__ import soundex_query_handler,query")
         execute_time.append(part_time.timeit(number=10000))
-    print(execute_time)
+    # print(execute_time)
     return execute_time
 
-queryList = ['brand AND acquisitons OR patched NOT nuisance','announcement AND browser OR creates OR improved NOT amplifer','passed AND photons AND rip',
-            'electrons OR atoms NOT wide OR range AND firefox OR gathered NOT websidestory','setting OR proof OR involves AND loopholes',
+#==============================================================================
+# Set testing cases
+#==============================================================================
+queryList = ['long AND cry','passed AND photons AND rip','poorer OR done NOT anonymous','highlighted OR strong AND muddy',
+            'returned AND income OR touch NOT afford','markets OR january AND mirror NOT cord',
+            'announcement AND browser OR creates OR improved NOT amplifer','wording OR rejection OR inventions NOT xbox NOT draft',
+            'fixed AND crap OR boosted AND price OR mobiles NOT georgeta','fire AND firefox NOT fear OR lend AND iranian OR bloggers',
+            'consumers AND responsible OR telephoning AND press OR question NOT press',
+            'electrons OR atoms NOT wide OR range AND firefox OR gathered NOT websidestory',
             'exploited OR debut NOT codenamed AND won OR vary AND statistics NOT peak','collect AND rot OR templating NOT software OR handsets AND poorer NOT re-using',
-            'poorer OR done NOT anonymous','highlighted OR strong AND muddy','equivalent AND tonnes OR newer NOT waste','returned AND income OR touch NOT afford',
-            'lying OR recycled AND toxic NOT desire','fixed AND crap OR boosted AND price OR mobiles NOT georgeta','consumers AND responsible OR telephoning AND press OR question NOT press',
-            'division OR fewer AND experienced OR employee','markets OR january AND mirror NOT cord','wording OR rejection OR inventions NOT xbox NOT draft','fire AND firefox NOT fear OR lend AND iranian OR bloggers',
-            'recall NOT failures OR regions AND console OR tip AND cord NOT seven OR almost AND rarity not incidents','damage AND added OR screening AND unlock OR movie AND quality AND bit NOT clearer']
+            'damage AND added OR screening AND unlock OR movie AND quality AND bit NOT clearer',           
+            'recall NOT failures OR regions AND console OR tip AND cord NOT seven OR almost AND rarity not incidents',
+            'setting OR proof OR involves AND loopholes NOT lying OR recycled AND toxic NOT desire OR equivalent AND tonnes OR newer NOT waste',
+            'brand AND acquisitons OR patched NOT nuisance AND division OR fewer AND experienced OR employee']
 
+#==============================================================================
+# Plot bar charts for execution time  
+#==============================================================================
+def plot_bar_result(queryList):
+    x =list(range(len(queryList)))
+    normal_time = calculate_normal_time(queryList)
+    sdx_time = calculate_sdx_time(queryList)
 
-normal_time = calculate_normal_time(queryList)
-sdx_time = calculate_sdx_time(queryList)
+    total_width, n = 0.8, 2
+    width = total_width / n
+
+    plt.figure(figsize=(10,5))
+    plt.bar(x,normal_time,fc = '#446455',width = width, label = 'Normal Boolean query')
+    for i in x:
+        x[i] = x[i] + width
+    plt.bar(x,sdx_time,fc = '#C7B19C',width = width,label = 'Soundex Boolean query')
+    plt.title('The execution comparion between noraml query and soundex normal query')
+    plt.xlabel('query')
+    plt.ylabel('execution time')
+    plt.legend()
+    plt.show()
+    return 
+    
+plot_bar_result(queryList)
+
