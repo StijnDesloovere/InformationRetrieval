@@ -20,8 +20,6 @@ reversed_binary_tree = create_btree(reverse_positional_index)
 def query(user_query, use_soundex=False, p_index=positional_index, s_index=soundex_positional_index, btree=binary_tree, r_btree=reversed_binary_tree):
     query = user_query.split(" ")
     op = ''
-    term = ""
-    # posting = get_pos_posting_list(term, p_index)
     documents = []
 
     for index in range(0, len(query)):
@@ -47,7 +45,6 @@ def query(user_query, use_soundex=False, p_index=positional_index, s_index=sound
             else:
                 # Support a soundex
                 if use_soundex:
-                    # term = soundex(term)
                     term = get_sdx_posting_list(term, s_index)
                 else:
                     term = get_pos_posting_list(term, p_index)
