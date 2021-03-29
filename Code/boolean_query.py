@@ -1,7 +1,4 @@
 # 2.a: Implement full boolean querying supporting AND, OR and NOT.
-# from cyberbrain import trace
-# from Code.positional_index import create_positional_index, reverse_index_keys
-
 
 # ==============================================================================
 # Getting positional postinglist of terms

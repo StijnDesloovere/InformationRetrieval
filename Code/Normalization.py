@@ -1,9 +1,7 @@
 # Aspect 3: Normalization
 # b) Include the use of soundex to improve recall. Demonstrate the improvement.
 import os
-from Code.positional_index import create_positional_index, reverse_index_keys
 from Code.boolean_query import union, intersection
-import matplotlib.pyplot as plt
 
 # ==============================================================================
 # Soundex normalization

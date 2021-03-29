@@ -1,6 +1,6 @@
 from Code.positional_index import create_positional_index, reverse_index_keys
 from Code.boolean_query import *
-from Code.Normalization import create_soundex_positional_index, soundex
+from Code.Normalization import create_soundex_positional_index, get_sdx_posting_list
 from Code.btree import create_btree
 from Code.wildcard_query import wildcard_query
 

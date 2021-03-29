@@ -1,4 +1,3 @@
-from Code.btree import create_btree
 from Code.positional_index import create_positional_index, reverse_index_keys
 import re
 

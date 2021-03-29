@@ -1,7 +1,5 @@
-# coding=utf-8
 from __future__ import (nested_scopes, generators, division, absolute_import, with_statement,
                         print_function, unicode_literals)
-from Code.positional_index import create_positional_index
 
 """
 Btree code taken from: https://gist.github.com/mateor/885eb950df7231f178a5
@@ -195,23 +193,6 @@ def create_btree(dictionary):
         tree_index.insert((term, dictionary[term]))
 
     return tree_index
-
-
-# Example range(m,n)
-# Test_tree = BTree(2)
-# Test_tree.insert(("apple", 1))
-# Test_tree.insert(("banana", 2))
-# Test_tree.insert(("kiwi", 3))
-# Test_tree.insert(("melon", 4))
-# Test_tree.insert(("mandarin", 5))
-# Test_tree.insert(("mammee", 6))
-# Test_tree.insert(("mamoncillo", 7))
-# Test_tree.insert(("nectarine", 8))
-# Test_tree.insert(("neem", 9))
-# Test_tree.insert(("nere", 10))
-# Test_tree.insert(("cherry", 11))
-# Test_tree.insert(("grape", 12))
-# Test_tree.insert(("lemon", 13))
 
 
 
