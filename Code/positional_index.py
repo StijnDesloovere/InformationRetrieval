@@ -6,12 +6,16 @@ def create_positional_index():
     positional_index = {}
     document = 1
 
+    path = os.path.dirname(os.getcwd())
+    stop_word_path = os.path.join(path, "Stopword-List.txt")
+    document_path = os.path.join(path, "Documents")
+
     # Load the stop word list into memory
-    with open('../Stopword-List.txt') as file:
+    with open(stop_word_path) as file:
         stopwords = list(word.rstrip() for word in file)
 
-    for filename in os.listdir('../Documents'):
-        file = open('../Documents/' + filename, "r")
+    for filename in os.listdir(document_path):
+        file = open(os.path.join(document_path, filename), "r")
         position = 0
 
         for line in file:
