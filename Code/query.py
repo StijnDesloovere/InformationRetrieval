@@ -47,8 +47,8 @@ def query(user_query, use_soundex=False, p_index=positional_index, s_index=sound
             else:
                 # Support a soundex
                 if use_soundex:
-                    term = soundex(term)
-                    term = get_pos_posting_list(term, s_index)
+                    # term = soundex(term)
+                    term = get_sdx_posting_list(term, s_index)
                 else:
                     term = get_pos_posting_list(term, p_index)
 
@@ -65,7 +65,6 @@ def query(user_query, use_soundex=False, p_index=positional_index, s_index=sound
                 documents = list(set(term))
     return documents
 
-
 def test_queries():
     query_1 = query("search AND engine AND google")
     print("Query 1: Documents " + str(query_1) + " contain the terms search, engine and google")
@@ -76,7 +75,14 @@ def test_queries():
     query_4 = query("*c*mp*er AND supercomputer", True)
     print("Query 4: Documents " + str(query_4) + " contain terms that match *c*mp*er and supercomputer with soundex")
     query_5 = query("*c*mp*er AND soepercomputer", True)
-    print("Query 4: Documents " + str(query_5) + " contain terms that match *c*mp*er and soepercomputer with soundex")
-
+    print("Query 5: Documents " + str(query_5) + " contain terms that match *c*mp*er and soepercomputer with soundex")
+    query_6 = query("move OR technology AND organisation")
+    print("Query 6: Documents " + str(query_6) + " contain terms that match move or technology and organisation")
+    query_7 = query("move OR technology AND organization")
+    print("Query 7: Documents " + str(query_7) + " contain terms that match move or technology and organization")
+    query_8 = query("move OR technology AND organisation", True)
+    print("Query 8: Documents " + str(query_8) + " contain terms that match move or technology and organisation with soundex")
+    query_9 = query("move OR technology AND organization", True)
+    print("Query 9: Documents " + str(query_9) + " contain terms that match move or technology and organization with soundex")
 
 test_queries()
