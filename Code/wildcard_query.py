@@ -1,4 +1,4 @@
-from Code.btree import BTree, create_btree
+from Code.btree import create_btree
 from Code.positional_index import create_positional_index, reverse_index_keys
 import re
 
@@ -79,11 +79,4 @@ def wildcard_query(query, index, btree, reversed_btree):
 
     return result
 
-
-# Example: find computer and supercomputer
-index = create_positional_index()
-reversed_index = reverse_index_keys(index)
-btree = create_btree(index)
-reversed_btree = create_btree(reversed_index)
-print(wildcard_query("*c*mp*er", index, btree, reversed_btree))
 
