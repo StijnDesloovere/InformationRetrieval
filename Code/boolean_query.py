@@ -6,6 +6,7 @@
 
 
 def get_pos_posting_list(word, p_index):
+    word = word.lower()
     if word in p_index:
         return p_index[word]
     else:
